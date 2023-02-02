@@ -6,8 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "webpack",
-    "start": "webpack serve",
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development",
     "stats-prod": "webpack --mode production --json _stats_/webpack-stats-prod.json && bundle-stats --html --baseline --no-compare --out-dir _stats_ _stats_/webpack-stats-prod.json",
     "stats-dev": "webpack --mode development --json _stats_/webpack-stats-dev.json && bundle-stats --html --baseline --no-compare --out-dir _stats_ _stats_/webpack-stats-dev.json"
   },

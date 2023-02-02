@@ -2,17 +2,28 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
-import FirstPage from "./pages/first-page/first-page";
-import SecondPage from "./pages/second-page/second-page";
+
+const LazyFirstPage = React.lazy(
+  () =>
+    import(/* webpackChunkName: "first-page" */ "./pages/first-page/first-page")
+);
+const LazySecondPage = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "second-page" */ "./pages/second-page/second-page"
+    )
+);
 
 const AppRoot = () => {
   return (
     <React.StrictMode>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<FirstPage />} />
-          <Route path="/second" element={<SecondPage />} />
-        </Routes>
+        <React.Suspense>
+          <Routes>
+            <Route path="/" element={<LazyFirstPage />} />
+            <Route path="/second" element={<LazySecondPage />} />
+          </Routes>
+        </React.Suspense>
       </BrowserRouter>
     </React.StrictMode>
   );

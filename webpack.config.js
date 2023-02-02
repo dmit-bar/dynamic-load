@@ -4,7 +4,6 @@ const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
-  mode: "development",
   entry: "./src/index.tsx",
   devtool: "cheap-source-map",
   output: {
