@@ -1,17 +1,37 @@
+import loadable from "@loadable/component";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
-import FirstPage from "./pages/first-page/first-page";
-import SecondPage from "./pages/second-page/second-page";
+
+const Fallback = <div>Loading...</div>;
+
+const LazyFirstPage = loadable(
+  () =>
+    import(
+      /* webpackChunkName: "first-page" */ "./pages/first-page/first-page"
+    ),
+  {
+    fallback: Fallback,
+  }
+);
+export const LazySecondPage = loadable(
+  () =>
+    import(
+      /* webpackChunkName: "second-page" */ "./pages/second-page/second-page"
+    ),
+  {
+    fallback: Fallback,
+  }
+);
 
 const AppRoot = () => {
   return (
     <React.StrictMode>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<FirstPage />} />
-          <Route path="/second" element={<SecondPage />} />
+          <Route path="/" element={<LazyFirstPage />} />
+          <Route path="/second" element={<LazySecondPage />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>

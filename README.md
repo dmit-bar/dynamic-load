@@ -5,6 +5,9 @@
 Запуск анализа размера чанков: `yarn stats-dev` | `yarn stats-prod`
 
 Ветки:
+
 `main` - без code splitting
+
 `react-suspense` - React Suspense + lazy
-`loadable` - @loadable
+
+`loadable` - @loadable/component

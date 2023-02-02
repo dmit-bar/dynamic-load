@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { LazySecondPage } from "../..";
 
 const FirstPage = () => {
   const navigate = useNavigate();
@@ -7,7 +8,12 @@ const FirstPage = () => {
   return (
     <div className="page">
       <h2>First page</h2>
-      <button onClick={() => navigate("/second")}>To second page</button>
+      <button
+        onClick={() => navigate("/second")}
+        onMouseOver={() => LazySecondPage.preload()}
+      >
+        To second page
+      </button>
     </div>
   );
 };
